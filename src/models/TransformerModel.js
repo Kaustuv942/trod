@@ -1,24 +1,27 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const ProfileSchema = new Schema({
-    profileId: {
+const TransformerSchema = new Schema({
+    transformerId: {
         type: String,
         required: true,
         unique: true,
     },
-    gender: {
+    transformerName: {
         type: String,
     },
-    picture: {
+    transformerOwner: {
+        type: String, // email of the user:
+    },
+    Rating: {
         type: String,
     },
-    addressId: {
+    Details: {
         type: String,
-    },
+    }
 });
 
-ProfileSchema.set('toJSON', {
+TransformerSchema.set('toJSON', {
     transform: (document, returnedObject) => {
         returnedObject.id = returnedObject._id.toString()
         delete returnedObject._id
@@ -26,6 +29,6 @@ ProfileSchema.set('toJSON', {
     }
 })
 
-const Profile =  mongoose.model("profile", ProfileSchema);
+const Transformer =  mongoose.model("transformer", TransformerSchema);
 
-module.exports = Profile;
+module.exports = Transformer;

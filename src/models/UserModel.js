@@ -6,9 +6,6 @@ const UserSchema = new Schema({
         type: String,
         required: true,
     },
-    dob: {
-        type: Date,
-    },
     email: {
         type: String,
         required: true,
@@ -20,52 +17,11 @@ const UserSchema = new Schema({
     lastName: {
         type: String,
     },
-    position: {
-        type: String
-    },
-    department: {
-        type: String
-    },
-    profileId: {
-        type: String,
-        unique: true,
-    },
-    collegeId: {
-        type: String,
-    },
-    collegeName: {
-        type: String,
-    },
-    location: {
-        type: String,
-    },
-    isOpenToWork: {
-        type: Boolean,
-    },
     phoneNumber: {
         type: String,
     },
-    dateJoined: {
-        type: Date,
-        default: Date.now(),
-    },
-    daysToRetire: {
+    role:{
         type: String,
-    },
-    attachments: {
-        type: String
-    },
-    exit: {
-        type: String,
-        default: "none"
-    },
-    isContractual:{
-        type:String,
-        default: "false"
-    },
-    contractLength: {
-        type:Number,
-        default: 0
     }
 });
 

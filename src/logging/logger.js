@@ -10,7 +10,7 @@ const logLevels = {
 };
  
 const log = createLogger({
-    level: "trace",
+    level: "info",
     levels: logLevels,
     transports: [new transports.Console()],
 });

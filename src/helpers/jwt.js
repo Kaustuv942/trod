@@ -2,7 +2,6 @@ const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
 
 const logger = require('../logging/logger.js')
-const Admin = require('../models/AdminModel')
 const User = require('../models/UserModel')
 
 // get password vars from .env file
@@ -20,18 +19,6 @@ function authenticateToken(req, res, next) {
         if (err) return res.sendStatus(403)
         
         req.user = user
-
-
-        const nuser= await Admin.findOne({email: req.user.data});
-        if(nuser){
-            req.role = "admin"
-            const adm = await User.findOne({email: req.user.data}) 
-             req.collegeId = adm.collegeId  
-        }
-        else{
-            req.role = "user"
-        }
-        logger.log.trace("role "+ req.role)
         next()
 
        

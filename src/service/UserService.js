@@ -1,61 +1,30 @@
 const User = require('../models/UserModel')
-const Admin=require('../models/AdminModel')
-const Profile = require('../models/ProfileModel')
 const bcrypt = require('bcryptjs');
 const auth = require('../helpers/jwt.js')
 const { v4: uuidv4 } = require('uuid');
 const logger = require('../logging/logger');
 
 
+async function register(params, res){
+    try{
+        const user = new User(params)
+        await user.save()
+    }
+    catch(err){
+        next(err);
+    }
+}
 
 async function login({ email, password }) {
     const user = await User.findOne({email});
-    const admin = await Admin.findOne({email});
-    var isAdmin;
-    var isSuperAdmin;
-    if(admin)
-    {
-        
-        if(admin.role=="superadmin")
-        {
-            isSuperAdmin=true;
-            isAdmin=true;
-        }
-        else
-        {
-            isAdmin=true;
-            isSuperAdmin=false;
-        }
-        
-    }
-    else{
-        isAdmin=false;
-        isSuperAdmin=false;
-    }
-    console.log(isSuperAdmin)
-    
     // synchronously compare user entered password with hashed password
     if(user && bcrypt.compareSync(password, user.password)){
         const token = auth.generateAccessToken(email);
         // call toJSON method applied during model instantiation
-        return {...user.toJSON(), token,"isAdmin":isAdmin,"isSuperAdmin":isSuperAdmin}
+        return {...user.toJSON(), token}
     }
 }
 
-function register(params, res){
-    const user = new User(params)
-    user.profileId = uuidv4(); 
-    user
-        .save()
-        .then(() => {
-            profile = new Profile({profileId : user.profileId});
-            profile.save();
-            // res.json({success:true});
-        } )
-        .catch((err) => {
-            // res.status(400).json({success:false, msg:err});
-        });
-}
 async function getAllUsers(){
     return await User.find();
 }
@@ -65,8 +34,6 @@ async function updateUser(user){
         new: true
       });
     console.log(updatedUser)
-    // logger.log.trace("Updated as the following model: ")
-    // logger.log.trace(updatedUser);
     return updatedUser;
 }
 
