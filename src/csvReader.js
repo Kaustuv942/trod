@@ -49,10 +49,20 @@ const readCSV = async (csvFilePath) => {
     .on('data', (row) => {
       if(rowNo > 0)
         data.push(row)
-      console.log('transformerId:', row[0])
-      console.log('timeStamp:', row[1])
-      console.log('currentValue:', row[2])
-      console.log('VoltageValue:', row[3])
+        console.log('transformerId:', row[0])
+        console.log('timeStamp:', row[1])
+        console.log('topOilTemperatureC:', row[2])
+        console.log('bottomOilTemperatureC:', row[3])
+        console.log('phaseCurR:', row[4])
+        console.log('phaseCurY:', row[5])
+        console.log('phaseCurB:', row[6])
+        console.log('phaseVolR:', row[7])
+        console.log('phaseVolY:', row[8])
+        console.log('phaseVolB:', row[9])
+        console.log('neutralCur:', row[10])
+        console.log('EarthToNeutralVol:', row[11])
+        console.log('humidity:', row[12])
+        console.log('powerFactor:', row[13])
 
       console.log('\n')
       rowNo++;
@@ -66,8 +76,18 @@ const readCSV = async (csvFilePath) => {
           const properties = new Properties()
           properties.transformerId = data[i][0]
           properties.timeStamp = data[i][1]
-          properties.currentValue = data[i][2]
-          properties.VoltageValue = data[i][3]
+          properties.topOilTemperatureC = data[i][2]
+          properties.bottomOilTemperatureC = data[i][3]
+          properties.phaseCurR = data[i][4]
+          properties.phaseCurY = data[i][5]
+          properties.phaseCurB = data[i][6]
+          properties.phaseVolR = data[i][7]
+          properties.phaseVolY = data[i][8]
+          properties.phaseVolB = data[i][9]
+          properties.neutralCur = data[i][10]
+          properties.earthToNeutralVol = data[i][11]
+          properties.humidity = data[i][12]
+          properties.powerFactor = data[i][13]
           console.log(properties)
           let payload = properties;
 

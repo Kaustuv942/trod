@@ -9,12 +9,43 @@ const PropertiesSchema = new Schema({
     timeStamp: {
         type: String,
     },
-    currentValue: {
-        type: String, 
-    },
-    VoltageValue: {
+    topOilTemperatureC:{
         type: String,
     },
+    bottomOilTemperatureC:{
+        type: String,
+    },
+    phaseCurR:{
+        type: String,
+    },
+    phaseCurY:{
+        type: String,
+    },
+    phaseCurB:{
+        type: String,
+    },
+    phaseVolR:{
+        type: String,
+    },
+    phaseVolY:{
+        type: String,
+    },
+    phaseVolB:{
+        type: String,
+    },
+    neutralCur:{
+        type: String,
+    },
+    volEarthToNeutral:{
+        type: String,
+    },
+    humidity:{
+        type: String,
+    },
+    powerFactor:{
+        type: String,
+    }
+
 });
 
 PropertiesSchema.set('toJSON', {
