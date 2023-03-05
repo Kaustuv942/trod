@@ -10,6 +10,7 @@ const port = process.env.PORT || 3000
 const auth = require('./helpers/jwt.js');
 const users = require('./controllers/UserController.js')
 const transformer = require('./controllers/TransformerDataController')
+const nodeMCU = require('./controllers/NodeMCUDataController')
 const errors = require('./helpers/errorHandler.js')
 const logger = require('./logging/logger.js')
 
@@ -42,6 +43,7 @@ app.get('/', (req, res) => {
 })
 app.use('/users', users) // middleware for listening to routes
 app.use('/transformer_data', transformer)
+app.use('/nodemcu-data', nodeMCU)
 app.use(errors.errorHandler); // middleware for error responses
 
 // MongoDB connection, success and error event responses
