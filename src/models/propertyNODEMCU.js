@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const propertyNODEMCUSchema = new Schema({
     timeStamp: {
-        type: String,
+        type: Date,
         default: Date.now()
     },
     temp:{
