@@ -1,1 +1,1 @@
-# faculty-vacancy-backend for SIH 2022 Finals
+# Transformer Reading Observation Dashboard, Final year project for EE department 2023
