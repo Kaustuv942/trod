@@ -35,7 +35,7 @@ app.use(auth.authenticateToken.unless({
         { url: '/users/refreshToken', methods: ['POST']},
         { url: '/admin/login', methods: ['POST']},
         { url: '/transformer_data/properties/add', methods: ['POST']},
-        { url: '/nodemcu-data/properties/add', methods: ['POST']}
+        { url: '/properties/add/:temp/:humidity', methods: ['GET']}
     ]
 }))
 

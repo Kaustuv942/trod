@@ -1,4 +1,5 @@
-const express = require('express')
+const express = require('express');
+const propertyNODEMCU = require('../models/propertyNODEMCU');
 const router = express.Router();
 const NodeMCUDataService = require('../service/NodeMCUDataService');
 
@@ -15,10 +16,13 @@ router.get('/all', async (req, res, next) => {
     
 })
 
-router.post('/properties/add', async(req, res, next) => {
-    
+router.get('/properties/add/:temp/:humidity', async(req, res, next) => {
+    const reqProperty = new propertyNODEMCU();
+    reqProperty.temp = req.params.temp;
+    reqProperty.humidity = req.params.humidity;
+
     try{
-        const nodeMCUProperty = await NodeMCUDataService.addNodeMCUProperty(req.body)
+        const nodeMCUProperty = await NodeMCUDataService.addNodeMCUProperty(reqProperty)
         
         res.json(nodeMCUProperty)
         
