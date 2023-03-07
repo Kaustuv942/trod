@@ -35,11 +35,12 @@ app.use(auth.authenticateToken.unless({
         { url: '/users/refreshToken', methods: ['POST']},
         { url: '/admin/login', methods: ['POST']},
         { url: '/transformer_data/properties/add', methods: ['POST']},
-        { url: '/properties/add/:temp/:humidity', methods: ['GET']}
+        { url: '/properties/add/temp/humidity', methods: ['GET']}
     ]
 }))
 
 app.get('/', (req, res) => {
+    console.log("Hello World!");
     res.status(200).json({message: "Hello World!"})
 })
 app.use('/users', users) // middleware for listening to routes

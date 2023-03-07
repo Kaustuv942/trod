@@ -20,7 +20,7 @@ router.get('/properties/add/:temp/:humidity', async(req, res, next) => {
     const reqProperty = new propertyNODEMCU();
     reqProperty.temp = req.params.temp;
     reqProperty.humidity = req.params.humidity;
-
+    console.log("/property/add/humidity/temp accessed");
     try{
         const nodeMCUProperty = await NodeMCUDataService.addNodeMCUProperty(reqProperty)
         
